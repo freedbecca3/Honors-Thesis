@@ -1,0 +1,76 @@
+# Honors-Thesis
+n = 31000;
+A = zeros(n,n);
+%A(50,50) =1;
+%Asize = numel(A);
+randomcolumn = randi(size(A,2),1);
+randomrow = randi(size(A,2),1);
+A(randomrow, randomcolumn) = 1;
+randomcolumn2 = randi(size(A,2),1);
+randomrow2 = randi(size(A,2),1);
+A(randomrow2, randomcolumn2) = 1;
+randomcolumn3 = randi(size(A,2),1);
+randomrow3 = randi(size(A,2),1);
+A(randomrow3, randomcolumn3) = 1;
+randomcolumn4 = randi(size(A,2),1);
+randomrow4 = randi(size(A,2),1);
+A(randomrow4, randomcolumn4) = 1;
+randomcolumn5 = randi(size(A,2),1);
+randomrow5 = randi(size(A,2),1);
+A(randomrow5, randomcolumn5) = 1;
+randomcolumn6 = randi(size(A,2),1);
+randomrow6 = randi(size(A,2),1);
+A(randomrow6, randomcolumn6) = 1;
+randomcolumn7 = randi(size(A,2),1);
+randomrow7 = randi(size(A,2),1);
+A(randomrow7, randomcolumn7) = 1;
+randomcolumn8 = randi(size(A,2),1);
+randomrow8 = randi(size(A,2),1);
+A(randomrow8, randomcolumn8) = 1;
+randomcolumn9 = randi(size(A,2),1);
+randomrow9 = randi(size(A,2),1);
+A(randomrow9, randomcolumn9) = 1;
+randomcolumn10 = randi(size(A,2),1);
+randomrow10 = randi(size(A,2),1);
+A(randomrow10, randomcolumn10) = 1;
+A;
+%spy(A)
+
+start=1;
+finish = 1000000;
+for start = 1:finish
+    potentialcandidates = find(A);
+    numofpotcand = numel(potentialcandidates);
+    randominteger = randi([1,numofpotcand],1,1);
+    location = potentialcandidates(randominteger);
+    choseninfectedcell = A(location);
+    IND = [location];
+    s = [n,n];
+    [i, j] = ind2sub(s, IND);
+    ltp = A(max(i-1,1),max(j-1,1));
+    ctp = A(max(1,i-1),j);
+    rtp = A(max(i-1,1),min(j+1,n));
+    lmp = A(i,max(j-1,1));
+    rmp = A(i,min(j+1,n));
+    lbp = A(min(i+1,n),max(j-1,1));
+    cbp = A(min(i+1,n),j);
+    rbp = A(min(i+1,n),min(j+1,n));
+    areaofpossiblespread = [ltp ctp rtp; lmp choseninfectedcell rmp; lbp cbp rbp];
+    potentialvictims = find(~areaofpossiblespread);
+    numofpotvict = numel(potentialvictims);
+    while numofpotvict ~= 0
+        randominteger2 = randi([1,numofpotvict],1,1);
+        chosenvictim = potentialvictims(randominteger2);
+        areaofpossiblespread(chosenvictim) = 1;
+        A(max(i-1,1),max(j-1,1)) = areaofpossiblespread(1);
+        A(i,max(j-1,1)) = areaofpossiblespread(2);
+        A(min(i+1,n),max(j-1,1)) = areaofpossiblespread(3);
+        A(max(i-1,1),min(j+1,n)) = areaofpossiblespread(7);
+        A(i,min(j+1,n)) = areaofpossiblespread(8);
+        A(min(i+1,n),min(j+1,n)) = areaofpossiblespread(9);
+        A(max(1,i-1),j) = areaofpossiblespread(4);
+        A(min(i+1,n),j) = areaofpossiblespread(6);
+        break
+    end
+end
+spy(A)
