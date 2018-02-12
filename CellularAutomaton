@@ -18,21 +18,7 @@ A(randomrow4, randomcolumn4) = 1;
 randomcolumn5 = randi(size(A,2),1);
 randomrow5 = randi(size(A,2),1);
 A(randomrow5, randomcolumn5) = 1;
-randomcolumn6 = randi(size(A,2),1);
-randomrow6 = randi(size(A,2),1);
-A(randomrow6, randomcolumn6) = 1;
-randomcolumn7 = randi(size(A,2),1);
-randomrow7 = randi(size(A,2),1);
-A(randomrow7, randomcolumn7) = 1;
-randomcolumn8 = randi(size(A,2),1);
-randomrow8 = randi(size(A,2),1);
-A(randomrow8, randomcolumn8) = 1;
-randomcolumn9 = randi(size(A,2),1);
-randomrow9 = randi(size(A,2),1);
-A(randomrow9, randomcolumn9) = 1;
-randomcolumn10 = randi(size(A,2),1);
-randomrow10 = randi(size(A,2),1);
-A(randomrow10, randomcolumn10) = 1;
+
 A;
 %spy(A)
 
